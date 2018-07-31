@@ -1,0 +1,88 @@
+1. db命令
+   1) python manage.py db init
+      初始化数据库迁移
+      生成 migrations 目录
+
+   2）python manage.py db migrate
+
+     生成迁移计划,
+     在migrations/versions目录下生成迁移的py文件
+
+   3） python manage.py db upgrade
+       执行迁移计划，生成表
+
+2. 城市区域的数据和接口的设计
+
+3. 用户系统
+   1）用户权限
+
+      Linux的文件权限： r 4, w 2, x 1
+
+      101(5): r-x
+      r: 4: 100
+          & 101
+          = 100  = 4 : r
+
+      w: 2: 010
+          & 101
+          = 000 : 0 : -
+
+      x: 1 : 001
+          &  101
+          =  001 : 1 : x
+
+      rights(0)权限变量：
+         rights | 1 =  1
+         001
+        |100
+        =101  = 5
+
+
+         rights | 4 =  5
+         rights | 2 =  7
+
+     二进制的位操作：
+        &(位与，两个数都是1时，为1 )
+        |(位或, 两个数只要有一个是1时，为1)
+
+      权限名 权限值
+      查看    1
+      编辑    2
+      删除    4
+      导出    8
+      导入    16
+      发送邮件 32
+
+
+      角色id  角色名     权限
+      1      超级管理员  63
+      2      普通用户    3
+
+      用户名  角色id
+      disen    1
+
+   2）用户注册（发送邮件）
+      用户表： t_user 分析
+
+      用户id： id
+      用户名:  name
+      口令：   password
+      别名：   nickname
+      邮箱：   email
+      手机号：  phone
+      激活状态： 0未激活， 1已激活)
+      注销状态： is_life(0: 注销， 1: 正常)
+      注册时间： regist_time
+      最后登录时间：last_login_time
+
+      # 令牌：token: 缓存（redis）
+
+
+
+
+   3）用户激活
+   4）用户修改口令
+   5）上传或修改用户头像
+
+
+
